@@ -53,3 +53,8 @@ growfriend/
 ```
 
 The application code already has a good separation between frontend and backend, so it is suitable to keep as a self-contained project folder inside a larger portfolio repository.
+
+## Related Files
+
+- [`API_DOCUMENTATION.md`](./API_DOCUMENTATION.md) documents the backend routes, auth model, and major task/pet/store workflows
+- [`PORTFOLIO_CONTENTS.md`](./PORTFOLIO_CONTENTS.md) captures what should be kept in the portfolio version of the project
