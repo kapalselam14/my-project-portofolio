@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════
+   EvolutionOverlay.css
+   ═══════════════════════════════════════════════════ */
+
+.evolution-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Choose panel ──────────────────────────────────── */
+.evolution-panel {
+  background: linear-gradient(145deg, #fff9e6, #fff5d4);
+  border-radius: 24px;
+  padding: 36px 40px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 80px rgba(255, 215, 0, 0.15);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.evolution-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #2D6A4F;
+  margin: 0 0 8px;
+}
+
+.evolution-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 24px;
+}
+
+/* Current pet display */
+.evolution-current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.evolution-current-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+
+.evolution-arrow {
+  font-size: 2rem;
+  color: #b8860b;
+  font-weight: 700;
+}
+
+.evolution-question {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+  animation: question-pulse 2s ease-in-out infinite;
+}
+
+@keyframes question-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(255,215,0,0.4); }
+  50%      { transform: scale(1.08); box-shadow: 0 4px 30px rgba(255,215,0,0.6); }
+}
+
+/* Confirm actions */
+.evolution-confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.evolution-confirm-btn,
+.evolution-decline-btn {
+  width: 300px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 0.7rem; 
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: var(--font-pixel);
+  letter-spacing: 0.5px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.evolution-confirm-btn {
+  border: 2px solid var(--color-card-1);
+  background: var(--color-card-1);
+  color: var(--color-text-light);
+  box-shadow: 0 6px 16px rgba(45, 106, 79, 0.2);
+}
+
+.evolution-confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(45, 106, 79, 0.28);
+}
+
+.evolution-decline-btn {
+  border: 2px solid var(--color-card-2);
+  background: var(--color-card-2);
+  color: var(--color-text-light);
+}
+
+.evolution-panel .evolution-confirm-btn,
+.evolution-panel .evolution-decline-btn {
+  font-size: 1rem !important;
+  padding: 7px 16px !important;
+  letter-spacing: 0.5px !important;
+}
+
+.evolution-panel .evolution-confirm-btn {
+  background: var(--color-card-1) !important;
+  color: var(--color-text-light) !important;
+  border-color: var(--color-card-1) !important;
+}
+
+.evolution-panel .evolution-decline-btn {
+  background: var(--color-card-2) !important;
+  color: var(--color-text-light) !important;
+  border-color: var(--color-card-2) !important;
+}
+.evolution-decline-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(122, 106, 69, 0.2);
+}
+
+/* ── Animation phase ───────────────────────────────── */
+.evolution-animation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+}
+
+.evolution-glow-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,215,0,0.6), rgba(255,215,0,0.1), transparent);
+  pointer-events: none;
+}
+
+.evolution-morph-img {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}

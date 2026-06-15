@@ -1,0 +1,410 @@
+/* ── Admin Tasks: toolbar, table, badges, forms, dialogs ─────── */
+
+.admin-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: rgba(245, 238, 220, 0.5);
+    border: 1px solid rgba(184, 147, 90, 0.4);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-toolbar-filters {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-filter-btn {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    padding: 7px 12px;
+    border: 1.5px solid rgba(139, 69, 19, 0.25);
+    background: rgba(255, 255, 255, 0.28);
+    color: var(--text-main);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-filter-btn:hover {
+    background: rgba(139, 69, 19, 0.1);
+    transform: translateY(-1px);
+}
+
+.admin-filter-btn--active {
+    background: var(--accent);
+    color: var(--text-inverted);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-filter-btn--org.admin-filter-btn--active {
+    background: #4a6fa5;
+    border-color: #4a6fa5;
+    color: white;
+}
+
+.admin-filter-btn--act.admin-filter-btn--active {
+    background: #7b5ea7;
+    border-color: #7b5ea7;
+    color: white;
+}
+
+.admin-filter-select {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    padding: 7px 10px;
+    border: 1.5px solid rgba(139, 69, 19, 0.25);
+    background: rgba(255, 255, 255, 0.34);
+    color: var(--text-main);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.admin-filter-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.12);
+}
+
+.admin-create-btn {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    padding: 10px 20px;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-create-btn:hover {
+    background: var(--btn-primary-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.admin-edit-btn {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    padding: 5px 12px;
+    background: rgba(139, 69, 19, 0.06);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.admin-edit-btn:hover {
+    background: var(--accent);
+    color: var(--text-inverted);
+    transform: translateY(-1px);
+}
+
+.admin-action-btns {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-delete-btn {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    padding: 5px 12px;
+    background: rgba(192, 57, 43, 0.05);
+    color: var(--text-error);
+    border: 1.5px solid var(--text-error);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.admin-delete-btn:hover {
+    background: var(--text-error);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.admin-delete-btn:disabled,
+.admin-delete-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    background: rgba(192, 57, 43, 0.02);
+    color: var(--text-error);
+    box-shadow: none;
+}
+
+/* Delete confirmation dialog */
+.admin-delete-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.admin-delete-dialog {
+    background: var(--bg-modal);
+    border: var(--border-pixel);
+    border-radius: var(--radius-md);
+    padding: 28px 32px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: var(--shadow-pixel);
+}
+
+.admin-delete-dialog-title {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    color: var(--text-error);
+    margin-bottom: 12px;
+}
+
+.admin-delete-dialog-desc {
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.admin-delete-dialog-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.admin-delete-dialog-btn {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    padding: 8px 20px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.admin-delete-dialog-btn--confirm {
+    background: var(--text-error);
+    color: white;
+    border: none;
+}
+
+.admin-delete-dialog-btn--confirm:hover {
+    opacity: 0.85;
+}
+
+.admin-delete-dialog-btn--cancel {
+    background: transparent;
+    color: var(--text-main);
+    border: 1.5px solid var(--border-color);
+}
+
+.admin-delete-dialog-btn--cancel:hover {
+    background: var(--accent-light);
+}
+
+/* Table */
+.admin-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 16px;
+    background: rgba(245, 238, 220, 0.6);
+    border: 1px solid rgba(184, 147, 90, 0.38);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    scrollbar-width: thin;
+}
+
+.admin-table-wrapper::-webkit-scrollbar {
+    height: 3px;
+}
+
+.admin-table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 0 40px;
+}
+
+.admin-table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(139, 69, 19, 0.35);
+    border-radius: 9999px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-code);
+    font-size: 14px;
+    min-width: 640px;
+}
+
+.admin-table th {
+    font-family: var(--font-code);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    padding: 12px 12px;
+    text-align: center;
+    border-bottom: 2px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.admin-table th:last-child {
+    border-right: none;
+}
+
+.admin-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    color: var(--text-main);
+    vertical-align: middle;
+}
+
+.admin-table td:last-child {
+    border-right: none;
+}
+
+.admin-table tr:hover {
+    background: rgba(139, 69, 19, 0.08);
+}
+
+.admin-table tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.dark-mode .admin-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Badges */
+.admin-category-badge {
+    font-family: var(--font-code);
+    font-size: 14px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.admin-category-badge--organization {
+    background: #4a6fa5;
+}
+
+.admin-category-badge--activity {
+    background: #7b5ea7;
+}
+
+.admin-difficulty-badge {
+    font-family: var(--font-code);
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+}
+
+.admin-difficulty-badge--easy {
+    background: #059669;
+}
+
+.admin-difficulty-badge--medium {
+    background: #b45309;
+}
+
+.admin-difficulty-badge--hard {
+    background: #dc2626;
+}
+
+.admin-accepted-count {
+    font-family: var(--font-code);
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.admin-task-count {
+    font-family: var(--font-code);
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.admin-table .coin-badge-amount {
+    color: #000;
+}
+
+.dark-mode .admin-table .coin-badge-amount {
+    color: #fff;
+}
+
+/* ── Dark mode ───────────────────────────────────────────────── */
+
+.dark-mode .admin-toolbar,
+.dark-mode .admin-table-wrapper {
+    background: rgba(36, 30, 24, 0.92);
+}
+
+/* ── Mobile (max 480px) ──────────────────────────────────────── */
+@media (max-width: 480px) {
+    .admin-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .admin-toolbar-filters {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .admin-filter-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .admin-create-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .admin-table {
+        min-width: 600px;
+        font-size: 12px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 8px 8px;
+        font-size: 12px;
+    }
+
+    .admin-edit-btn,
+    .admin-delete-btn {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}

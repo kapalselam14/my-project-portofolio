@@ -1,0 +1,159 @@
+/* System Fonts as used by GitHub */
+:root {
+  --bg-layout: #D8CEC2;/* new */
+  --bg: #fafafa;
+  --card: #efefef;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e6e6e6;
+  --border-layout: rgb(75, 75, 75); /* new */
+  --searchbox-border: rgb(120, 120, 120);
+  --collapse-btn-bg : whitesmoke;
+  --navbar-hover:rgba(255, 255, 255, 0.765);
+  --textbox-bg: whitesmoke;
+
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --input-bg: #ffffff;
+  --button-bg: #2563eb;
+  --button-hover: #adadad;
+  --icon: #6b7280;
+  --like: #e35d5b;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text)
+}
+
+body.dark,
+html[data-theme="dark"],
+:root[data-theme="dark"] {
+  --textbox-bg:#2C2A27;
+  --navbar-hover:rgba(100, 100, 100, 0.7);
+  --collapse-btn-bg : rgb(75, 75, 75);
+  --bg-layout: #1C1B19;/* new */
+  --border-layout: rgb(75, 75, 75); /* new */
+  --bg: #1C1B19;               /* --color-bg */
+  --card: #252422;             /* --color-surface */
+  --text: #F3EDE2;             /* --color-text-primary */
+  --muted: #918c84;            /* --color-text-secondary */
+  --accent: #E0A458;           /* --color-accent */
+  --accent-hover: #F2C76E;     /* --color-accent-hover */
+  --border: #3A3834;           /* --color-border */
+  --input-bg: #2C2A27;         /* --color-input-bg */
+  --button-bg: #3D75F0;        /* --color-button-bg (you may use --accent instead) */
+  --button-hover: #5A8BFF;     /* --color-button-hover */
+  --icon: #A39E94;             /* --color-icon */
+  --like: #E35D5B;  
+  background: var(--bg);
+  color: var(--text); 
+}
+
+.card,
+.rail-card {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+button.primary,
+.button {
+  background: var(--button-bg);
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button.primary:hover,
+.button:hover {
+  background: var(--button-hover);
+}
+
+input, .searchbox {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  outline: none;
+}
+input::placeholder,
+.searchbox::placeholder {
+  color: var(--muted);
+}
+
+/* small helpers */
+.icon {
+  color: var(--icon);
+}
+.like {
+  color: var(--like);
+}
+
+/* invert targeted images in dark mode */
+body.dark img.invert-on-dark,
+html[data-theme="dark"] img.invert-on-dark {
+  /* basic invert for monochrome icons */
+  filter: invert(0.8) brightness(1.1) contrast(1);
+  /* preserve layout and smoothing */
+  -webkit-filter: invert(.8) brightness(1.1) contrast(1);
+}
+
+/* alternative stronger treatment if source is pure black on transparent */
+body.dark img.invert-on-dark.monochrome,
+html[data-theme="dark"] img.invert-on-dark.monochrome {
+  filter: invert(0.8) grayscale(1) contrast(1.05);
+}
+
+/* if you prefer data-attribute */
+body.dark img[data-invert="dark"] { filter: invert(1) brightness(1.1); }
+
+body,
+.sidebar,
+.header,
+.card,
+.rail-card,
+input,
+.searchbox,
+button.primary,
+.button {
+  transition: ease background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.1s, filter 0.1s;
+}
+
+.tox,
+.tox-tinymce,
+.tox-editor-container,
+.tox-dialog,
+.tox-collection,
+.tox-collection__list,
+.tox-toolbar__primary,
+.tox-toolbar__overflow,
+.tox-menu,
+.tox-notification,
+.tox-statusbar,
+.tox-popper {
+  z-index: 99999 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

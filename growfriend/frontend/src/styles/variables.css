@@ -1,0 +1,153 @@
+/* All design tokens, e.g. Fonts, colors, spacing, shadows, etc. */
+
+:root {
+  /* --- Fonts --- */
+  --font-pixel: 'Pixelify Sans', monospace;
+  --font-code: 'Source Code Pro', monospace;
+  --font-hand: 'Architects Daughter', cursive;
+  --font-sans: system-ui, -apple-system, sans-serif;
+
+  /* --- Light Mode Palette (default) --- */
+  --bg-main: #f0e9d6;
+  --bg-surface: #c99b6e;
+  --bg-elevated: #d4b888;
+  --bg-card: #ede0c4;
+  --bg-modal: #f5eedc;
+  --bg-overlay: rgba(0, 0, 0, 0.45);
+
+  --border-color: #b8935a;
+  --border-input: #c0a06a;
+  --border-error: #c0392b;
+  --border-focus: #7a5c3a;
+
+  --text-main: #3d2b1a;
+  --text-muted: #6b5543;
+  --text-light: #8c7055;
+  --text-inverted: #f5eedc;
+  --text-success: #2d6a4f;
+  --text-error: #c0392b;
+  --text-warning: #b45309;
+  --text-attribute : #22c55e;
+
+  --accent: #8b4513;
+  --accent-hover: #6b3510;
+  --accent-light: rgba(139, 69, 19, 0.12);
+  --accent-border: rgba(139, 69, 19, 0.4);
+
+  --btn-primary-bg: #7a4528;
+  --btn-primary-text: #f5eedc;
+  --btn-primary-hover: #5e3318;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #b8935a;
+
+  --success-bg: rgba(45, 106, 79, 0.12);
+  --success-border: rgba(45, 106, 79, 0.4);
+  --error-bg: rgba(192, 57, 43, 0.1);
+  --error-border: rgba(192, 57, 43, 0.5);
+
+  --shadow-sm: 0 2px 6px rgba(61, 43, 26, 0.12);
+  --shadow-md: 0 4px 16px rgba(61, 43, 26, 0.18);
+  --shadow-lg: 0 8px 32px rgba(61, 43, 26, 0.25);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+
+  /* --- Semantic App Tokens (legacy names) --- */
+  --color-bg-app: #fefae0;
+  --color-bg-modal: #fefae0;
+  --color-bg-form: #ffffff;
+  --color-bg-accent: lightgray;
+
+  --color-card-1: #2d6a4f;
+  --color-card-2: #7a2e2e;
+  --color-card-3: #c4873a;
+  --color-card-4: #1b4d5c;
+
+  --color-badge-open-bg: #16a34a;
+  --color-badge-active-bg: var(--text-error);
+  --color-badge-cancelled-bg: #666666;
+  --color-badge-expired-bg: #92400e;
+  --color-badge-text: var(--text-inverted);
+
+  --color-text-light: var(--text-inverted);
+  --color-text-dark: var(--text-main);
+
+  --dsh-btn-color-bg: #283618ff;
+  --dsh-btn-text-color: #fefae0;
+
+  --color-btn-primary: #dda15e;
+  --color-coin: #d4a017;
+  --color-danger: var(--text-error);
+
+  --border-pixel: 3px solid var(--text-main);
+  --border-card: 2px solid var(--text-main);
+  --shadow-pixel: 4px 4px 0px var(--text-main);
+
+  --card-width: 160px;
+  --card-height: 220px;
+  --card-radius: 8px;
+
+  --font-display: var(--font-pixel);
+  --font-body: var(--font-code);
+}
+
+/* --- Dark Mode Palette --- */
+.dark-mode,
+[data-theme="dark"] {
+  --bg-main: #201a14ce;
+  --bg-surface: #241e18;
+  --bg-elevated: #2e2720;
+  --bg-card: #2a2218;
+  --bg-modal: #201a14;
+  --bg-overlay: rgba(0, 0, 0, 0.65);
+
+  --border-color: #4a3d2e;
+  --border-input: #5a4a35;
+  --border-error: #e55c4a;
+  --border-focus: #c9a96e;
+
+  --text-main: #f0e0c0;
+  --text-muted: #a89070;
+  --text-light: #7a6855;
+  --text-inverted: #e7e7e7;
+  --text-success: #4ade80;
+  --text-error: #f87171;
+  --text-warning: #fbbf24;
+
+  --accent: #c9a96e;
+  --accent-hover: #d4b888;
+  --accent-light: rgba(201, 169, 110, 0.15);
+  --accent-border: rgba(201, 169, 110, 0.4);
+
+  --btn-primary-bg: #c9a96e;
+  --btn-primary-text: #1a1510;
+  --btn-primary-hover: #d4b888;
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: #4a3d2e;
+
+  --success-bg: rgba(74, 222, 128, 0.1);
+  --success-border: rgba(74, 222, 128, 0.35);
+  --error-bg: rgba(248, 113, 113, 0.1);
+  --error-border: rgba(248, 113, 113, 0.4);
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+  /* --- Semantic App Tokens (legacy names) --- */
+  --color-bg-form: var(--bg-modal);
+  --color-bg-modal: var(--bg-modal);
+  --color-text-dark: var(--text-main);
+  --color-text-light: var(--text-inverted);
+  --color-btn-primary: var(--accent);
+  --color-danger: var(--text-error);
+  --border-card: 2px solid var(--border-color);
+  --shadow-pixel: 4px 4px 0px var(--text-main);
+}

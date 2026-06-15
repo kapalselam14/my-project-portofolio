@@ -1,0 +1,379 @@
+.landing-page {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ---- Left Panel ---- */
+.landing-left {
+    flex: 1;
+    background: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 48px;
+    position: relative;
+    min-height: 100vh;
+}
+
+.landing-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.landing-logo-title {
+    font-family: var(--font-pixel);
+    font-size: 2rem;
+    color: var(--text-main);
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.landing-logo-sub {
+    font-family: var(--font-hand);
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.landing-preview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+    width: 100%;
+}
+
+
+.landing-preview-img {
+    width: 100%;
+    /* max-width: 800px; */
+    max-width: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    object-fit: cover;
+    /* aspect-ratio: 16 / 10; */
+    aspect-ratio: auto;
+}
+
+.landing-tagline {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ---- Right Panel ---- */
+.landing-right {
+    width: 440px;
+    min-width: 380px;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 40px;
+    position: relative;
+}
+
+.landing-right .welcome-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.welcome-title {
+    font-family: var(--font-pixel);
+    font-size: 1.8rem;
+    color: var(--text-inverted);
+    letter-spacing: 3px;
+}
+
+.welcome-subtitle {
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    color: rgba(245, 238, 220, 0.75);
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-form .field-group .field-label {
+    color: rgba(245, 238, 220, 0.8);
+}
+
+.login-form .gf-input {
+    background: rgba(245, 238, 220, 0.15);
+    border-color: rgba(245, 238, 220, 0.3);
+    color: var(--text-inverted);
+}
+
+.login-form .gf-input::placeholder {
+    color: rgba(245, 238, 220, 0.45);
+}
+
+.login-form .gf-input:focus {
+    border-color: rgba(245, 238, 220, 0.7);
+    box-shadow: 0 0 0 3px rgba(245, 238, 220, 0.12);
+}
+
+.login-form .gf-input.error {
+    border-color: var(--text-error);
+    box-shadow: 0 0 0 3px rgba(255, 138, 128, 0.2);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper .gf-input {
+    padding-right: 44px;
+}
+
+.input-eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(245, 238, 220, 0.6);
+    font-size: 16px;
+    padding: 4px;
+    line-height: 1;
+    transition: color var(--transition-fast);
+}
+
+.input-eye-btn:hover {
+    color: var(--text-inverted);
+}
+
+.forgot-link {
+    font-size: 12px;
+    color: rgba(245, 238, 220, 0.7);
+    text-align: right;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    background: none;
+    border: none;
+    font-family: var(--font-code);
+    padding: 0;
+    text-decoration: underline;
+}
+
+.forgot-link:hover {
+    color: var(--text-inverted);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--text-main);
+    color: var(--bg-surface);
+    font-family: var(--font-pixel);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.login-btn:hover:not(:disabled) {
+    background: #2a1a0a;
+    transform: translateY(-1px);
+}
+
+.login-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
+.login-error {
+    font-size: 12px;
+    color: var(--text-error);
+    font-family: var(--font-code);
+    text-align: center;
+}
+
+.landing-signup-row {
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(245, 238, 220, 0.7);
+    font-family: var(--font-code);
+    text-align: center;
+}
+
+.landing-signup-row button {
+    background: none;
+    border: none;
+    color: var(--text-inverted);
+    font-family: var(--font-code);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.landing-signup-row button:hover {
+    opacity: 0.8;
+}
+
+/* ---- Desktop large (min 1440px) — monitor umum ---- */
+@media (min-width: 1440px) {
+    .landing-left {
+        padding: 48px 64px;
+    }
+
+    .landing-logo-title {
+        font-size: 2.4rem;
+    }
+
+    .landing-preview-img {
+        max-width: 600px;
+    }
+
+    .landing-tagline {
+        font-size: 1.15rem;
+    }
+
+    .landing-right {
+        width: 500px;
+        padding: 56px 48px;
+    }
+
+    .welcome-title {
+        font-size: 2rem;
+    }
+}
+
+/* ---- Desktop Full HD (min 1920px) ---- */
+@media (min-width: 1920px) {
+    .landing-left {
+        padding: 56px 80px;
+    }
+
+    .landing-logo-title {
+        font-size: 2.8rem;
+    }
+
+    .landing-preview-img {
+        max-width: 720px;
+    }
+
+    .landing-tagline {
+        font-size: 1.25rem;
+    }
+
+    .landing-right {
+        width: 560px;
+        padding: 64px 56px;
+    }
+
+    .welcome-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* ---- Responsive ---- */
+
+/* ---- Tablet (max 1024px) — iPad Pro / landscape ---- */
+@media (max-width: 1024px) {
+    .landing-right {
+        width: 380px;
+        min-width: 320px;
+        padding: 40px 32px;
+    }
+}
+
+/* ---- Tablet (max 860px) — iPad portrait / landscape phone ---- */
+@media (max-width: 860px) {
+    .landing-page {
+        flex-direction: column;
+    }
+
+    .landing-left {
+        padding: 32px 24px;
+        min-height: auto;
+    }
+
+    .landing-preview-img {
+        max-width: 320px;
+    }
+
+    .landing-right {
+        width: 100%;
+        min-width: unset;
+        padding: 40px 32px;
+    }
+}
+
+/* ---- Tablet kecil (481–767px) — preview disembunyikan ---- */
+@media (max-width: 767px) {
+    .landing-preview {
+        display: none;
+    }
+
+    .landing-left {
+        padding: 24px 20px;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .landing-tagline {
+        font-size: 0.95rem;
+    }
+
+    .landing-right {
+        padding: 32px 24px;
+    }
+}
+
+/* ---- Mobile Phone (max 480px) — login form only ---- */
+@media (max-width: 480px) {
+    .landing-left {
+        display: none;
+    }
+
+    .landing-right {
+        min-height: 100vh;
+        padding: 48px 20px;
+        justify-content: center;
+    }
+}
+
+/* ---- iPhone SE (max 375px) ---- */
+@media (max-width: 375px) {
+    .landing-right {
+        padding: 40px 16px;
+    }
+
+    .welcome-title {
+        font-size: 1.4rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.85rem;
+    }
+}
+
+/* ---- Minimum safe 320px ---- */
+@media (max-width: 320px) {
+    .landing-right {
+        padding: 32px 12px;
+    }
+
+    .welcome-title {
+        font-size: 1.2rem;
+    }
+}

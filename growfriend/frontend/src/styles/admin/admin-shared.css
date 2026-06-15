@@ -1,0 +1,131 @@
+/* ── Admin Shared: loading, error, empty states ───────────────── */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.admin-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 0;
+    color: var(--text-muted);
+    background: rgba(245, 238, 220, 0.45);
+    border-radius: var(--radius-lg);
+}
+
+.admin-loading-icon {
+    width: 32px;
+    height: 32px;
+    animation: spin 1s linear infinite;
+}
+
+.admin-loading-text {
+    font-family: var(--font-code);
+    font-size: 14px;
+}
+
+.admin-error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 60px 0;
+    text-align: center;
+    background: rgba(245, 238, 220, 0.5);
+    border: 1px solid rgba(192, 57, 43, 0.2);
+    border-radius: var(--radius-lg);
+}
+
+.admin-error-title {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    color: var(--text-error);
+}
+
+.admin-error-msg {
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.admin-error-retry {
+    margin-top: 8px;
+    padding: 8px 20px;
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: var(--border-pixel);
+    box-shadow: var(--shadow-pixel);
+    cursor: pointer;
+}
+
+.admin-error-retry:hover {
+    opacity: 0.85;
+}
+
+.admin-error-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    background: #fdecea;
+    border: 2px solid var(--text-error);
+    border-radius: 4px;
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--text-error);
+}
+
+.admin-error-banner-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-error);
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.admin-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    background: rgba(245, 238, 220, 0.5);
+    border: 1px dashed rgba(184, 147, 90, 0.5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-empty-title {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.admin-empty-sub {
+    font-family: var(--font-code);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ── Dark mode ───────────────────────────────────────────────── */
+
+.dark-mode .admin-error-banner {
+    background: rgba(192, 57, 43, 0.15);
+}
+
+.dark-mode .admin-empty-state,
+.dark-mode .admin-loading-state,
+.dark-mode .admin-error-state {
+    background: rgba(36, 30, 24, 0.92);
+}

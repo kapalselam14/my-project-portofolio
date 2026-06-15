@@ -1,0 +1,193 @@
+.store-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.store-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.store-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-dark);
+}
+
+.store-item {
+  background: var(--color-bg-form);
+  border: var(--border-pixel);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.store-item-img {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(180deg, #f5f5f5, #e9e9e9);
+  border-radius: 8px;
+}
+
+.store-item-title {
+  font-size: 14px;
+}
+
+.store-item-cost {
+  font-size: 12px;
+  color: var(--color-text-dark);
+}
+
+.store-item-buy {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 10px;
+  border: var(--border-pixel);
+  background: var(--color-btn-primary);
+}
+
+.store-success {
+    color: #2e7d32;
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.store-error {
+    color: #c62828;
+    margin: 8px 0;
+    font-size: 0.9rem;
+}
+
+.store-bubble-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.store-bubble {
+  background: var(--bg-modal);
+  border: 2px solid var(--success-border);
+  color: var(--text-success);
+  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  font-family: var(--font-code);
+  font-size: 12px;
+  box-shadow: var(--shadow-md);
+  letter-spacing: 0.2px;
+}
+
+.store-bubble-error {
+  background: #fff2f2;
+  color: #8a1f1f;
+  border-color: #d66;
+}
+
+/* overlay + sliding behaviour for Store (kept in store css) */
+.store-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* store-panel overrides for the sliding panel container */
+.store-panel {
+  width: min(420px, 88vw);
+  height: calc(100vh - 100px);
+  padding: 12px;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  border-right: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  background: var(--color-bg-modal);
+  overflow: hidden;
+  z-index: 120;
+  animation: storeSlideIn 320ms ease-out forwards;
+}
+
+@keyframes storeSlideIn {
+  from {
+    transform: translate(-100%, -50%);
+  }
+
+  to {
+    transform: translate(0%, -50%);
+  }
+}
+
+@keyframes storeSlideOut {
+  from {
+    transform: translate(0%, -50%);
+  }
+
+  to {
+    transform: translate(-100%, -50%);
+  }
+}
+
+.store-panel.store--closing {
+  animation: storeSlideOut 320ms ease-in forwards;
+}
+
+/* make inner content scrollable */
+.store-modal {
+  height: 100%;
+  overflow: auto;
+}
+
+/* make grid more compact inside the panel */
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* Keep food tooltip inside the store panel on right-column cards */
+.store-grid > .item-card:nth-child(2n) .item-tooltip {
+  left: auto;
+  right: 70%;
+}
+
+.store-grid > .item-card:nth-child(2n) .item-tooltip::after {
+  left: auto;
+  right: 10px;
+  border-bottom-color: rgba(20, 20, 20, 0.96);
+}
+
+@media (max-width: 480px) {
+  .store-panel {
+    width: 92vw;
+    height: calc(100vh - 80px);
+    padding: 10px;
+  }
+
+  .store-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 8px;
+  }
+
+  .store-item-img {
+    width: 64px;
+    height: 64px;
+  }
+}

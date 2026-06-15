@@ -1,0 +1,259 @@
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  margin-right: 48px;
+}
+
+.toolbar-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.toolbar-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.toolbar-select {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 8px;
+  border: var(--border-pixel);
+  background: var(--color-bg-form);
+  color: var(--color-text-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-pixel);
+}
+
+.toolbar-select option,
+.toolbar-select optgroup {
+  font-size: 12px;
+  font-family: var(--font-display);
+}
+
+.toolbar-select:focus {
+  outline: none;
+}
+
+.toolbar-select optgroup {
+  background-color: #2D6A4F;
+  color: #FEFAE0;
+  font-style: normal;
+}
+
+.toolbar-select option {
+  background-color: #FEFAE0;
+  color: #1a1a1a;
+}
+
+.toolbar-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 10px;
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  background: var(--color-btn-primary);
+  color: var(--color-text-dark);
+  transition: opacity 0.15s;
+}
+
+.toolbar-btn:hover {
+  opacity: 0.85;
+}
+
+.toolbar-btn--edit.toolbar-btn--active {
+  background: var(--color-coin);
+  box-shadow: 0 0 10px 3px var(--color-coin);
+}
+
+.toolbar-btn--delete.toolbar-btn--active {
+  background: var(--color-danger);
+  color: var(--color-text-light);
+  box-shadow: 0 0 10px 3px var(--color-danger);
+}
+
+.toolbar-btn--help {
+  background: var(--color-btn-primary);
+  padding: 6px 12px;
+}
+
+.toolbar-btn--reset {
+  background: var(--color-bg-form);
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+  padding: 4px 7px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.toolbar-btn--reset:hover {
+  background: var(--color-danger);
+  color: var(--color-text-light);
+  opacity: 1;
+}
+
+.toolbar-select--active {
+  border-color: var(--color-coin);
+  box-shadow: 0 0 6px 1px var(--color-coin);
+}
+
+.toolbar-btn--org {
+  background: #4a6fa5;
+  color: white;
+  border-color: #3a5f95;
+  opacity: 0.5;
+}
+
+.toolbar-btn--org-active {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #4a6fa5;
+}
+
+.toolbar-btn--act {
+  background: #7b5ea7;
+  color: white;
+  border-color: #6b4e97;
+  opacity: 0.5;
+}
+
+.toolbar-btn--act-active {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #7b5ea7;
+}
+
+.toolbar-btn--p2p {
+  background: #1a5eb8;
+  color: white;
+  border-color: #1249a0;
+  opacity: 0.5;
+}
+
+.toolbar-btn--p2p-active {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #1a5eb8;
+}
+
+.toolbar-btn--status-active {
+  background: #2e7d32;
+  color: white;
+  border-color: #1b5e20;
+  opacity: 0.5;
+}
+.toolbar-btn--status-active-on {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #2e7d32;
+}
+
+.toolbar-btn--status-submitted {
+  background: #f57c00;
+  color: white;
+  border-color: #e65100;
+  opacity: 0.5;
+}
+.toolbar-btn--status-submitted-on {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #f57c00;
+}
+
+.toolbar-btn--status-disputed {
+  background: #c62828;
+  color: white;
+  border-color: #b71c1c;
+  opacity: 0.5;
+}
+.toolbar-btn--status-disputed-on {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #c62828;
+}
+
+.toolbar-btn--comm {
+  background: #6d28d9;
+  color: white;
+  border-color: #5b21b6;
+  opacity: 0.5;
+}
+
+.toolbar-btn--comm-active {
+  opacity: 1;
+  box-shadow: 0 0 10px 3px #6d28d9;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet: kurangi margin kanan, cegah overflow */
+@media (max-width: 1024px) {
+  .toolbar {
+    margin-right: 24px;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .toolbar-controls {
+    max-width: 100%;
+  }
+
+  .toolbar-row {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 100%;
+  }
+
+  .toolbar-select {
+    font-size: 11px;
+    width: auto;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .toolbar-select option,
+  .toolbar-select optgroup {
+    font-size: 11px;
+  }
+}
+
+/* Mobile: toolbar rata kiri, tombol lebih kecil */
+@media (max-width: 480px) {
+  .toolbar {
+    justify-content: flex-start;
+    margin-right: 0;
+    margin-bottom: 12px;
+    max-width: 100%;
+  }
+
+  .toolbar-controls {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .toolbar-row {
+    justify-content: flex-start;
+    gap: 6px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .toolbar-select,
+  .toolbar-btn {
+    font-size: 13px;
+    padding: 5px 7px;
+  }
+
+  .toolbar-select {
+    width: auto;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .toolbar-select option,
+  .toolbar-select optgroup {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,258 @@
+/* ===================================================
+   PetSprite.css – All pet animation keyframes & styles
+   =================================================== */
+
+/* ── Container ─────────────────────────────────────── */
+.pet-sprite-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 280px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+
+.pet-sprite-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  will-change: transform;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+  transition: filter 0.3s ease;
+}
+
+.pet-sprite-wrapper:hover .pet-sprite-img {
+  filter: drop-shadow(0 12px 32px rgba(0,0,0,0.22));
+}
+
+/* ── Shadow beneath pet ────────────────────────────── */
+.pet-shadow {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 18px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════════
+   IDLE ANIMATIONS – per stage
+   ═══════════════════════════════════════════════════ */
+
+/* ── Egg: gentle rocking ───────────────────────────── */
+@keyframes egg-idle {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  15%      { transform: rotate(2.5deg) translateY(-2px); }
+  30%      { transform: rotate(0deg) translateY(0); }
+  45%      { transform: rotate(-2.5deg) translateY(-2px); }
+  60%      { transform: rotate(0deg) translateY(0); }
+  /* pause for ~40% of the cycle to feel natural */
+}
+
+.pet-sprite-img.stage-egg.anim-idle {
+  animation: egg-idle 3.5s ease-in-out infinite;
+}
+
+/* Egg shimmer overlay */
+.egg-shimmer {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: egg-shimmer-pulse 4s ease-in-out infinite;
+}
+
+@keyframes egg-shimmer-pulse {
+  0%, 100% { box-shadow: inset 0 0 20px rgba(255,255,220,0); }
+  50%      { box-shadow: inset 0 0 40px rgba(255,255,220,0.3); }
+}
+
+/* ── Kid: bouncy hop ───────────────────────────────── */
+@keyframes kid-idle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  20%      { transform: translateY(-10px) rotate(-2deg); }
+  40%      { transform: translateY(0) rotate(0deg); }
+  60%      { transform: translateY(-6px) rotate(1.5deg); }
+  80%      { transform: translateY(0) rotate(0deg); }
+}
+
+.pet-sprite-img.stage-kid.anim-idle {
+  animation: kid-idle 2.8s ease-in-out infinite;
+}
+
+/* ── Adult: gentle sway + breathing ────────────────── */
+@keyframes adult-idle {
+  0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+  25%      { transform: translateY(-4px) scale(1.015) rotate(-1deg); }
+  50%      { transform: translateY(0) scale(1.03) rotate(0deg); }
+  75%      { transform: translateY(-4px) scale(1.015) rotate(1deg); }
+}
+
+.pet-sprite-img.stage-adult.anim-idle {
+  animation: adult-idle 4s ease-in-out infinite;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   CLICK REACTIONS
+   ═══════════════════════════════════════════════════ */
+
+/* Egg: vigorous shake */
+@keyframes egg-click {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(8deg); }
+  20%  { transform: rotate(-8deg); }
+  30%  { transform: rotate(6deg); }
+  40%  { transform: rotate(-6deg); }
+  50%  { transform: rotate(4deg); }
+  60%  { transform: rotate(-4deg); }
+  70%  { transform: rotate(2deg); }
+  80%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.pet-sprite-img.stage-egg.anim-clicked {
+  animation: egg-click 0.6s ease-out;
+}
+
+/* Kid: excited jump */
+@keyframes kid-click {
+  0%   { transform: translateY(0) scale(1); }
+  15%  { transform: translateY(4px) scale(0.95, 1.05); }
+  35%  { transform: translateY(-35px) scale(1.05, 0.95); }
+  55%  { transform: translateY(0) scale(0.97, 1.03); }
+  70%  { transform: translateY(-12px) scale(1.02); }
+  85%  { transform: translateY(0) scale(0.99, 1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.pet-sprite-img.stage-kid.anim-clicked {
+  animation: kid-click 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Adult: happy spin-jump */
+@keyframes adult-click {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); }
+  20%  { transform: translateY(-25px) rotate(15deg) scale(1.08); }
+  50%  { transform: translateY(-35px) rotate(0deg) scale(1.1); }
+  70%  { transform: translateY(-10px) rotate(-10deg) scale(1.05); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+.pet-sprite-img.stage-adult.anim-clicked {
+  animation: adult-click 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   FEEDING ANIMATION
+   ═══════════════════════════════════════════════════ */
+
+@keyframes feeding-chomp {
+  0%   { transform: scale(1) rotate(0deg); }
+  15%  { transform: scale(1.12) rotate(-3deg); }
+  30%  { transform: scale(0.95) rotate(2deg); }
+  45%  { transform: scale(1.08) rotate(-2deg); }
+  60%  { transform: scale(0.97) rotate(1deg); }
+  75%  { transform: scale(1.04) rotate(0deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.pet-sprite-img.anim-feeding {
+  animation: feeding-chomp 1.2s ease-out;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   PLAYING ANIMATION
+   ═══════════════════════════════════════════════════ */
+
+@keyframes playing-wiggle {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  10%  { transform: translateY(-15px) translateX(-10px) rotate(-15deg); }
+  20%  { transform: translateY(0) translateX(10px) rotate(15deg); }
+  30%  { transform: translateY(-12px) translateX(-8px) rotate(-10deg); }
+  40%  { transform: translateY(0) translateX(8px) rotate(10deg); }
+  50%  { transform: translateY(-8px) translateX(-6px) rotate(-6deg); }
+  60%  { transform: translateY(0) translateX(6px) rotate(6deg); }
+  70%  { transform: translateY(-4px) translateX(-4px) rotate(-3deg); }
+  80%  { transform: translateY(0) translateX(4px) rotate(3deg); }
+  90%  { transform: translateY(-2px) translateX(0) rotate(0deg); }
+}
+
+.pet-sprite-img.anim-playing {
+  animation: playing-wiggle 1.2s ease-out;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   CELEBRATING – Pomodoro done / task complete
+   ═══════════════════════════════════════════════════ */
+
+@keyframes celebrating-jump {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  10%  { transform: translateY(-20px) rotate(-8deg) scale(1.05); }
+  25%  { transform: translateY(0) rotate(0deg) scale(0.98); }
+  35%  { transform: translateY(-15px) rotate(6deg) scale(1.04); }
+  50%  { transform: translateY(0) rotate(0deg) scale(0.99); }
+  60%  { transform: translateY(-8px) rotate(-4deg) scale(1.02); }
+  75%  { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+.pet-sprite-img.anim-celebrating {
+  animation: celebrating-jump 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   SAD – low hunger / mood
+   ═══════════════════════════════════════════════════ */
+
+@keyframes sad-droop {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  50%      { transform: translateY(5px) rotate(-3deg) scale(0.96); }
+}
+
+.pet-sprite-img.anim-sad {
+  animation: sad-droop 3s ease-in-out infinite;
+  filter: saturate(0.6) drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+}
+
+
+/* ═══════════════════════════════════════════════════
+   SLEEPING
+   ═══════════════════════════════════════════════════ */
+
+@keyframes sleeping-nod {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(4px) rotate(-4deg); }
+}
+
+.pet-sprite-img.anim-sleeping {
+  animation: sleeping-nod 4.5s ease-in-out infinite;
+  filter: brightness(0.85) saturate(0.7) drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+}
+
+
+/* ═══════════════════════════════════════════════════
+   EVOLVING – handled mostly by Framer Motion,
+   but this is the shimmer base
+   ═══════════════════════════════════════════════════ */
+
+@keyframes evolve-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,215,0,0); }
+  50%      { box-shadow: 0 0 60px 20px rgba(255,215,0,0.5); }
+}
+
+.pet-sprite-img.anim-evolving {
+  animation: evolve-glow-pulse 1s ease-in-out infinite;
+}

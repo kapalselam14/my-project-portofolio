@@ -1,0 +1,103 @@
+.subtab-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.subtab-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 16px;
+  border: var(--border-pixel);
+  background: var(--color-bg-form);
+  color: var(--color-text-dark);
+  box-shadow: var(--shadow-pixel);
+  opacity: 0.5;
+}
+
+.subtab-btn--active {
+  opacity: 1;
+  background: var(--color-btn-primary);
+  color: var(--color-text-light);
+  box-shadow: 0 0 8px 2px var(--color-btn-primary);
+}
+
+.mytask-toolbar-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.quest-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.quest-empty-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--color-text-dark);
+}
+
+.quest-empty-sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-dark);
+  opacity: 0.6;
+  max-width: 280px;
+}
+
+.mode-hint {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: red;
+  /* opacity: 0.6; */
+  white-space: nowrap;
+  margin-bottom: 0px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .subtab-btn {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .mytask-toolbar-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .subtab-row {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .subtab-btn {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .mytask-toolbar-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .mode-hint {
+    font-size: 11px;
+    white-space: normal;
+  }
+}

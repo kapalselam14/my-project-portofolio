@@ -1,0 +1,66 @@
+.quest-slider-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.quest-slider-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.quest-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quest-slider-arrow {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--color-text-dark);
+  opacity: 0.7;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  transition: opacity 0.15s;
+}
+
+.quest-slider-arrow:hover {
+  opacity: 1;
+}
+
+.quest-slider-empty {
+  width: var(--card-width);
+  height: var(--card-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-card);
+  border-radius: var(--card-radius);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.quest-slider-empty p {
+  font-family: var(--font-display);
+  font-size: 9px;
+  color: var(--color-text-dark);
+  text-align: center;
+  opacity: 0.5;
+  padding: 8px;
+}

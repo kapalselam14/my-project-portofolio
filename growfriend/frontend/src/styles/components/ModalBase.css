@@ -1,0 +1,384 @@
+.task-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* Transparent overlay variant used by the store so background isn't darkened */
+.modal-overlay--no-bg {
+  background: transparent;
+}
+
+/* Pass-through overlay: transparent and allows clicks to reach the page behind the modal.
+   The modal container itself remains interactive. */
+.modal-overlay--pass-through{
+  background: transparent;
+  pointer-events: none;
+}
+
+.modal-overlay--pass-through .modal-container{
+  pointer-events: auto;
+}
+
+/* .modal-container { */
+.task-modal-container {
+  width: 80vw;
+  max-width: 900px;
+  height: 90vh;
+  background: var(--color-bg-modal);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  display: flex;
+  flex-direction: column;
+}
+
+.task-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: var(--border-card);
+}
+
+.task-modal-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.task-modal-tab {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 10px;
+  border: var(--border-card);
+  background: var(--color-btn-primary);
+  color: var(--color-text-dark);
+}
+
+.task-modal-tab:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.task-modal-tab--active {
+  background: var(--color-btn-primary);
+  box-shadow: var(--shadow-pixel);
+}
+
+.task-modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--color-text-dark);
+  line-height: 1;
+}
+
+.task-modal-close:hover {
+  color: var(--color-danger);
+}
+
+.task-modal-description {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-dark);
+  padding: 10px 20px 0;
+}
+
+.task-modal-body {
+  padding: 16px 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet: 481–1024px */
+@media (max-width: 1024px) {
+  .task-modal-container {
+    width: 92vw;
+    max-width: 100%;
+    height: 92vh;
+  }
+
+  .task-modal-description {
+    font-size: 14px;
+    padding: 8px 16px 0;
+  }
+
+  .task-modal-body {
+    padding: 12px 16px;
+  }
+}
+
+/* Mobile: 320–480px */
+@media (max-width: 480px) {
+  .task-modal-container {
+    width: 100%;
+    max-width: 100vw;
+    height: 100dvh;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: none;
+    overflow-x: hidden;
+  }
+
+  .task-modal-header {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .task-modal-tabs {
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .task-modal-tab {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+
+  .task-modal-description {
+    font-size: 12px;
+    padding: 6px 12px 0;
+  }
+
+  .task-modal-body {
+    padding: 10px 8px;
+    overflow-x: hidden;
+  }
+
+  .task-modal-help-box {
+    width: calc(100% - 32px);
+    max-width: calc(100% - 32px);
+    padding: 16px;
+  }
+}
+
+/* Slide-in from left variant for store modal */
+.modal-container.modal--slide-left {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  height: 70vh;
+  width: 500px;
+  max-width: none;
+  border-right: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  transform: translate(-100%, -50%);
+  animation: slideInFromLeft 320ms ease-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translate(-100%, -50%); }
+  to { transform: translate(0%, -50%); }
+}
+
+@keyframes slideOutToLeft {
+  from { transform: translate(0%, -50%); }
+  to { transform: translate(-100%, -50%); }
+}
+
+/* When modal is in closing state, play slide-out */
+.modal-container.modal--slide-left.modal--closing {
+  animation: slideOutToLeft 320ms ease-in forwards;
+}
+
+/* remove extra padding for the store body so content fits nicely */
+.modal-body--store{
+  padding: 12px;
+}
+
+/* Help overlay — dipakai semua modal */
+/* .modal-help-overlay { */
+/* Help overlay — shared across all modals */
+.task-modal-help-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.task-modal-help-box {
+  width: 340px;
+  background: var(--color-bg-form);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.task-modal-help-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--color-text-dark);
+  text-align: center;
+  text-decoration: underline;
+}
+
+.task-modal-help-list {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-dark);
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-modal-help-close {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 8px 14px;
+  background: var(--color-btn-primary);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  color: var(--color-text-dark);
+  align-self: flex-end;
+}
+
+/* ===== LOADING STATE ===== */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.task-loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.task-loading-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  animation: spin 1.2s linear infinite;
+}
+
+.task-loading-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-text-dark);
+}
+
+.task-loading-sub {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-dark);
+  opacity: 0.6;
+}
+
+/* ===== ERROR STATE ===== */
+
+.task-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.task-error-icon  { font-size: 32px; }
+
+.task-error-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--color-text-dark);
+}
+
+.task-error-msg {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-dark);
+  opacity: 0.6;
+}
+
+.task-error-retry {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 8px 16px;
+  background: var(--color-btn-primary);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  color: var(--color-text-dark);
+  margin-top: 8px;
+}
+
+/* ===== EMPTY STATE (shared) ===== */
+
+.task-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.task-empty-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--color-text-dark);
+}
+
+.task-empty-sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-dark);
+  opacity: 0.6;
+  max-width: 280px;
+}
+
+.task-empty-nav-btns {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.task-empty-nav-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 14px;
+  background: var(--color-btn-primary);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  color: var(--color-text-dark);
+  cursor: pointer;
+}
+
+.task-empty-nav-btn:hover {
+  opacity: 0.85;
+}
+
+.task-empty-create-btn {
+  font-family: var(--font-display);
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-btn-primary);
+  border: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  color: var(--color-text-dark);
+  margin-top: 8px;
+}

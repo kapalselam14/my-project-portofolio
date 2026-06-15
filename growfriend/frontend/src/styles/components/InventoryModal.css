@@ -1,0 +1,301 @@
+.inventory-modal{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  padding-right: 8px;
+}
+
+.inventory-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inventory-title{
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.inventory-desc{
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-dark);
+}
+
+.inventory-grid{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.inventory-slot-img{
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(180deg, #f5f5f5, #e9e9e9);
+  border-radius: 6px;
+}
+
+.inventory-slot-badge{
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  background: rgba(0,0,0,0.06);
+  padding: 2px 6px;
+  font-size: 11px;
+  border-radius: 8px;
+}
+
+/* sections layout */
+.inventory-wrapper{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  min-height: 0;
+}
+
+.inventory-section,
+.pet-collection-section{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.section-title{
+  font-family: var(--font-display);
+  font-size: 12px;
+  margin: 0;
+}
+
+.pets-scroll {
+  max-height: 276px;
+  overflow-y: auto;
+  padding-right: 6px;
+  min-height: 0;
+}
+
+.pets-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.pet-slot{
+  background: var(--color-bg-form);
+  border: var(--border-pixel);
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pet-slot-img{
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(180deg, #f5f5f5, #e9e9e9);
+  border-radius: 10px;
+}
+
+/* Overlay and sliding panel */
+.inventory-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.1);
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.inventory-panel{
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  width: min(520px, 92vw);
+  max-height: calc(100dvh - 32px);
+  height: auto;
+  border-right: var(--border-pixel);
+  box-shadow: var(--shadow-pixel);
+  background: var(--color-bg-modal);
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  z-index: 120;
+  animation: inventorySlideIn 320ms ease-out forwards;
+}
+
+@keyframes inventorySlideIn {
+  from { transform: translate(-100%, -50%); }
+  to { transform: translate(0%, -50%); }
+}
+
+@keyframes inventorySlideOut {
+  from { transform: translate(0%, -50%); }
+  to { transform: translate(-100%, -50%); }
+}
+
+.inventory-panel.inventory--closing{
+  animation: inventorySlideOut 320ms ease-in forwards;
+}
+
+/* Mobile: center modal and avoid slide transform override */
+@media (max-width: 420px) {
+  .inventory-overlay{
+    justify-content: center;
+  }
+
+  .inventory-panel{
+    width: 92vw;
+    padding: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 92vh;
+    animation: inventoryFadeIn 200ms ease-out forwards;
+  }
+
+  .inventory-panel.inventory--closing{
+    animation: inventoryFadeOut 200ms ease-in forwards;
+  }
+
+  .inventory-grid{ grid-template-columns: repeat(4, 1fr); }
+  .pets-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+@keyframes inventoryFadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes inventoryFadeOut {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
+}
+
+/* confirmation bubble */
+.feed-confirm-bubble {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--surface-color, #fff);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 3000;
+  text-align: center;
+}
+
+.feed-confirm-content p {
+  margin: 0 0 16px 0;
+  color: var(--text-color, #333);
+}
+
+.feed-confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* tooltip overlay */
+.pet-tooltip-overlay{
+  position: fixed;
+  transform: translate(-50%, -12px);
+  min-width: 170px;
+  max-width: 210px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: rgba(23, 23, 23, 0.96);
+  color: #f5f5f5;
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.pet-tooltip-overlay::after{
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(23, 23, 23, 0.96) transparent transparent transparent;
+}
+
+
+
+@media (max-width: 768px) {
+  .inventory-overlay {
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .inventory-panel {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    top: max(16px, env(safe-area-inset-top));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: auto;
+    height: auto;
+    max-height: none;
+
+    transform: none !important;
+    animation: none !important;
+
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .inventory-modal {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 4px;
+  }
+
+  .inventory-desc {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .inventory-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .pets-scroll {
+    max-height: 260px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pets-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .pet-slot {
+    height: 82px;
+  }
+}

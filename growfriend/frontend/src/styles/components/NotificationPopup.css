@@ -1,0 +1,63 @@
+.gf-notification-root {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  align-items: center;
+}
+
+.gf-notification {
+  min-width: 260px;
+  max-width: min(90vw, 540px);
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  animation: gf-notification-slide 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gf-notification--success {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--text-success);
+}
+
+.gf-notification--error {
+  background: var(--error-bg);
+  border-color: var(--error-border);
+  color: var(--text-error);
+}
+
+.gf-notification--info {
+  background: var(--bg-modal);
+  border-color: var(--border-color);
+  color: var(--text-main);
+}
+
+@keyframes gf-notification-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px) scale(0.98);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+}

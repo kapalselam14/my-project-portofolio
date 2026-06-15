@@ -1,0 +1,575 @@
+.task-card-wrapper {
+  width: var(--card-width);
+  height: var(--card-height);
+  perspective: 1000px;
+}
+
+@media (max-width: 480px) {
+  .task-card-wrapper {
+    width: 100%;
+  }
+}
+
+.task-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.task-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* both side card */
+.task-card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--card-radius);
+  border: var(--border-card);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+/* backside flipperd 180deg */
+.task-card-back {
+  transform: rotateY(180deg);
+}
+
+/* header */
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-card-badges {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* close button */
+.task-card-close {
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  font-size: 12px;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.task-card-close:hover {
+  color: var(--color-danger);
+}
+
+/* for title */
+.task-card-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin-top: 4px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* instructions */
+.task-card-instructions {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.3;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+/* expired */
+.task-card-expired {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* footer */
+.task-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.task-card-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* button */
+.task-card-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 4px 6px;
+  background: var(--color-btn-primary);
+  border: 1px solid #1a1a1a;
+  color: var(--color-text-dark);
+}
+
+.task-card-btn:hover {
+  opacity: 0.85;
+}
+
+/* flip button */
+.task-card-btn--flip {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--color-text-light);
+  font-size: 14px;
+  padding: 2px 5px;
+}
+
+/* accept button */
+.task-card-btn--accept {
+  background: #4caf50;
+  border-color: #2d6a2d;
+  color: white;
+}
+
+/* accepted button */
+.task-card-btn--accepted {
+  background: #4caf50;
+  border-color: #2d6a2d;
+  color: white;
+}
+
+/* cancel / delete button */
+.task-card-btn--cancel,
+.task-card-btn--delete {
+  background: var(--color-danger);
+  border-color: #7f1d1d;
+  color: white;
+}
+
+/* report button */
+.task-card-btn--report {
+  background: #b45309;
+  border-color: #78350f;
+  color: white;
+}
+
+/* pending review buttons */
+.task-card-btn--confirm {
+  background: #059669;
+  border-color: #047857;
+  color: white;
+}
+
+.task-card-btn--dispute {
+  background: #d97706;
+  border-color: #b45309;
+  color: white;
+}
+
+/* reassign button */
+.task-card-btn--reassign {
+  background: #1a5eb8;
+  border-color: #1e3a8a;
+  color: white;
+}
+
+/* details */
+.task-card-back-label {
+  font-family: var(--font-display);
+  font-size: 7px;
+  color: var(--color-text-light);
+}
+
+/* details rows */
+.task-card-detail {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.task-card-detail-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* List objectives */
+.task-card-objectives {
+  list-style: disc;
+  padding-left: 14px;
+  font-size: 13px;
+}
+
+/* Badge diffuclty for community task */
+.task-card-difficulty {
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.task-card-difficulty--easy   { background: #059669; color: white; }
+.task-card-difficulty--medium { background: #b45309; color: white; }
+.task-card-difficulty--hard   { background: #dc2626; color: white; }
+
+/* ===== EXPANDED OVERLAY ===== */
+
+/* overlay dark */
+.task-card-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.task-card-expanded-wrapper {
+  width: 320px;
+  height: 440px;
+  perspective: 1000px;
+}
+
+.task-card-small .task-card-instructions {
+  -webkit-line-clamp: 2;
+  flex: none;
+}
+
+.task-card-small {
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-radius);
+  border: var(--border-card);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+}
+
+/* ===== EDIT / DELETE MODE OVERLAY ===== */
+
+.task-card-small {
+  position: relative;
+}
+
+.task-card-mode-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: var(--card-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card-overlay-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 8px 14px;
+  border: var(--border-pixel);
+}
+
+.task-card-overlay-btn--edit {
+  background: var(--color-coin);
+  color: var(--color-text-dark);
+}
+
+.task-card-overlay-btn--delete {
+  background: var(--color-danger);
+  color: var(--color-text-light);
+  font-size: 24px;
+  padding: 8px 16px;
+  border: none;
+}
+
+.task-card-confirm-text {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--color-text-light);
+  text-align: center;
+  line-height: 1.8;
+}
+
+.task-card-confirm-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-card-confirm-btn {
+  font-family: var(--font-display);
+  font-size: 12px;
+  padding: 6px 12px;
+  border: var(--border-pixel);
+}
+
+.task-card-confirm-btn--yes {
+  background: var(--color-danger);
+  color: var(--color-text-light);
+}
+
+.task-card-confirm-btn--no {
+  background: var(--color-bg-form);
+  color: var(--color-text-dark);
+}
+
+
+/* Category badge for community tasks */
+.task-card-category {
+  font-family: var(--font-code);
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  color: var(--color-text-light);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  width: fit-content;
+}
+
+.task-card-category--organization { background: #4a6fa5; }
+.task-card-category--activity     { background: #7b5ea7; }
+
+/* Posted by on P2P tab cards */
+.task-card-posted-by {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.task-card-user-icon {
+  width: 11px;
+  height: 11px;
+  object-fit: contain;
+}
+
+/* Wrapper for posted-by + expired on P2P card small */
+.task-card-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Assignee on small card (creator view) */
+.task-card-assignee {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Report checklist overlay */
+.task-card-report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 0 12px;
+}
+
+.task-card-report-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-light);
+  cursor: pointer;
+}
+
+.task-card-report-item input[type='checkbox'] {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Source badge for Quest tab cards */
+.task-card-source-badge {
+  font-family: var(--font-code);
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  color: var(--color-text-light);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.task-card-source-badge--p2p        { background: #1a5eb8; }
+.task-card-source-badge--community  { background: #6d28d9; }
+
+.task-card-submitted-badge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: #d97706;
+  color: var(--color-text-light);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.task-card-waiting-text {
+  font-style: italic;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* Centered delete confirmation modal */
+.task-card-delete-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.task-card-delete-modal {
+  background: var(--color-bg-modal);
+  border: var(--border-pixel);
+  border-radius: var(--card-radius);
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  min-width: 240px;
+  max-width: calc(100vw - 32px);
+}
+
+.task-card-delete-modal-text {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--color-text-dark);
+  text-align: center;
+  margin: 0;
+}
+
+.task-card-mode-overlay--locked {
+  background: rgba(80, 20, 20, 0.75);
+  cursor: not-allowed;
+  gap: 6px;
+}
+
+.task-card-locked-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.task-card-locked-text {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: rgba(255, 200, 200, 0.9);
+  text-align: center;
+}
+
+.task-card-accept-success {
+  background: rgba(30, 100, 50, 0.92);
+  gap: 4px;
+  animation: accept-success-in 0.25s ease;
+}
+
+@keyframes accept-success-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.task-card-accept-success-icon {
+  font-size: 40px;
+  color: #86efac;
+  margin: 0;
+  line-height: 1;
+}
+
+.task-card-accept-success-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: #fff;
+  margin: 0;
+}
+
+.task-card-accept-success-sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.task-card-btn-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.task-card-btn-tooltip-wrapper::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 42, 26, 0.95);
+  border: 1px solid #2d5a3a;
+  border-radius: 4px;
+  color: #d4c9b0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  padding: 4px 8px;
+  white-space: normal;
+  text-align: center;
+  max-width: 120px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 20;
+}
+
+.task-card-btn-tooltip-wrapper:hover::after {
+  opacity: 1;
+}
+
+.task-card-toast {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 42, 26, 0.95);
+  border: 1px solid #2d5a3a;
+  border-radius: 4px;
+  color: #d4c9b0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  padding: 6px 10px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  animation: toast-in 0.2s ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

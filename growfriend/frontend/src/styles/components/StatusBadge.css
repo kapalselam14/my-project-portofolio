@@ -1,0 +1,48 @@
+.status-badge {
+  font-family: var(--font-code);
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  color: var(--color-text-light);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-badge--open {
+  background-color: var(--color-badge-open-bg);
+}
+
+.status-badge--active {
+  background-color: var(--color-badge-active-bg);
+}
+
+.status-badge--cancelled {
+  background-color: var(--color-badge-cancelled-bg);
+}
+
+.status-badge--expired {
+  background-color: var(--color-badge-expired-bg);
+}
+
+.status-badge--rejected {
+  background-color: #fff1f2;
+  color: #dc2626;
+}
+
+.status-badge--disputed {
+  background-color: #dc2626;
+}
+
+.status-badge--pending_review {
+  background-color: #d97706;
+}
+
+.status-badge--pending_confirmation {
+  background-color: #d97706;
+}
+
+.status-badge--completed {
+  background-color: #059669;
+}
+
