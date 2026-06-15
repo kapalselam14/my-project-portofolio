@@ -69,7 +69,6 @@ my-project-portofolio/
     ├── screenshots/
     ├── API_DOCUMENTATION.md
     ├── Default QTs.png
-    ├── PORTFOLIO_CONTENTS.md
     ├── README.md
     └── package.json
 ```
