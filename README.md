@@ -60,15 +60,15 @@ my-project-portofolio/
 │   ├── frontend/
 │   ├── java-client/
 │   ├── screenshots/
-│   ├── PORTFOLIO_ENTRY.md
+│   ├── API_DOCUMENTATION.md
 │   ├── README.md
 │   └── package.json
 └── growfriend/
     ├── backend/
     ├── frontend/
     ├── screenshots/
+    ├── API_DOCUMENTATION.md
     ├── Default QTs.png
-    ├── PORTFOLIO_CONTENTS.md
     ├── README.md
     └── package.json
 ```
