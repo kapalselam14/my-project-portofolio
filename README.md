@@ -1,90 +1,99 @@
-# Project Portfolio
+# Hi, I'm pempekRebus a.k.a Aidil Muslim
 
-Welcome to my portfolio repository. This repo collects selected software projects that I use to demonstrate how I approach product design, full-stack engineering, architecture, and implementation quality across different stacks.
+Full-stack developer focused on building products that feel complete, not just coded.
 
-The projects here are not just screenshots or static demos. Each folder contains real application code, project structure, and supporting documentation so visitors can inspect how the work was built.
+- Building interactive web apps with solid backend foundations
+- Interested in product thinking, application architecture, and developer experience
+- Currently improving my work across `React`, `Node.js`, `Express`, `SvelteKit`, and data-heavy backend flows
 
-## What You Will Find Here
+## What I'm Working On
 
-- Full-stack applications with separate frontend and backend layers
-- Projects that show API design, authentication, persistence, and testing
-- Different client experiences across web and desktop environments
-- Project-specific README files with more technical detail
+- Growing a portfolio around full-stack apps with real product scope
+- Writing cleaner backend code, better tests, and stronger project documentation
+- Turning ideas into projects that are usable, inspectable, and worth shipping
 
 ## Featured Projects
 
-### 1. GrowFriend
+### GrowFriend
 
-[`growfriend/`](./growfriend/) is a gamified productivity application where users complete tasks, run focus sessions, earn in-app rewards, and raise virtual pets.
-
-**Highlights**
-
-- Full-stack product with `React`, `Vite`, `Node.js`, and `Express`
-- `MongoDB` and `Redis` integration for persistence and caching
-- JWT-based authentication and protected application flows
-- Pomodoro focus mode, task economy, and pet progression system
-- Automated tests across backend models/routes and frontend utilities/components
-
-This project is useful for showing end-to-end product thinking, application state management, backend architecture, and feature development beyond basic CRUD.
-
-### 2. Personal Blogging Platform
-
-[`blogging-system/`](./blogging-system/) is a multi-client blogging platform built around a shared backend API. It includes a web frontend for readers and writers, plus a separate Java desktop client for administration.
+Gamified productivity app where users complete tasks, run focus sessions, earn rewards, and raise virtual pets.
 
 **Highlights**
 
-- `SvelteKit` frontend with an `Express` backend
-- `SQLite` relational storage with authentication and content workflows
-- Article publishing, nested comments, likes, profile management, and image uploads
-- Real-time notifications using Server-Sent Events
-- Separate `Java Swing` admin client using the same backend API
+- `React` + `Vite` frontend with a `Node.js` + `Express` backend
+- `MongoDB` and `Redis` for persistence and caching
+- JWT auth, Pomodoro flow, task economy, and pet progression
+- Automated tests across routes, models, hooks, utilities, and UI components
 
-This project is useful for showing API reuse across multiple clients, relational data design, authentication flows, and full-stack integration.
+[View Project](https://github.com/kapalselam14/my-project-portofolio/growfriend)
 
-## Tech Across This Portfolio
+### Personal Blogging Platform
 
-- Frontend: `React`, `SvelteKit`, `Vite`
-- Backend: `Node.js`, `Express`
-- Data: `MongoDB`, `Mongoose`, `Redis`, `SQLite`
-- Auth and security: `JWT`, `bcrypt`
-- Testing: `Vitest`, `Supertest`
-- Desktop client: `Java Swing`
+Multi-client blogging system with a web frontend for readers and writers plus a separate Java admin client.
 
-## Repository Structure
+**Highlights**
 
-```text
-my-project-portofolio/
-├── README.md
-├── blogging-system/
-│   ├── backend/
-│   ├── frontend/
-│   ├── java-client/
-│   ├── screenshots/
-│   ├── API_DOCUMENTATION.md
-│   ├── README.md
-│   └── package.json
-└── growfriend/
-    ├── backend/
-    ├── frontend/
-    ├── screenshots/
-    ├── API_DOCUMENTATION.md
-    ├── Default QTs.png
-    ├── README.md
-    └── package.json
-```
+- `SvelteKit` frontend with a shared `Express` API
+- `SQLite` relational storage and JWT-based auth flows
+- Nested comments, likes, image uploads, and live notifications via SSE
+- Separate `Java Swing` admin client consuming the same backend
 
-## How To Explore
+[View Project](https://github.com/kapalselam14/my-project-portofolio/blogging-system)
 
-If you are reviewing this repository for technical depth, the best path is:
+## Tech I Use
 
-1. Start with the project summary in each folder.
-2. Inspect the frontend and backend source structure.
-3. Review the routes, controllers, models, and utilities to understand architecture decisions.
-4. Check the tests to see how behavior is validated.
+![JavaScript](https://img.shields.io/badge/JavaScript-111111?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![React](https://img.shields.io/badge/React-111111?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Svelte](https://img.shields.io/badge/Svelte-111111?style=for-the-badge&logo=svelte&logoColor=FF3E00)
+![Node.js](https://img.shields.io/badge/Node.js-111111?style=for-the-badge&logo=node.js&logoColor=5FA04E)
+![Express](https://img.shields.io/badge/Express-111111?style=for-the-badge&logo=express&logoColor=FFFFFF)
+![MongoDB](https://img.shields.io/badge/MongoDB-111111?style=for-the-badge&logo=mongodb&logoColor=47A248)
+![Redis](https://img.shields.io/badge/Redis-111111?style=for-the-badge&logo=redis&logoColor=FF4438)
+![SQLite](https://img.shields.io/badge/SQLite-111111?style=for-the-badge&logo=sqlite&logoColor=74C0FC)
+![Java](https://img.shields.io/badge/Java-111111?style=for-the-badge&logo=openjdk&logoColor=F89820)
+![Git](https://img.shields.io/badge/Git-111111?style=for-the-badge&logo=git&logoColor=F05032)
 
-## Notes
+## GitHub Snapshot
 
-- `growfriend/README.md` currently contains the stronger project-level overview.
-- `blogging-system/PORTFOLIO_ENTRY.md` is currently the more useful project summary than `blogging-system/README.md`.
-- This root README is intended as a quick introduction for portfolio visitors.
-- Some projects may still contain coursework-era structure, but they are included here because they demonstrate real engineering work and architectural decisions.
+<table>
+  <tr>
+    <td>
+      <img
+        src="https://github-readme-stats.vercel.app/api?username=kapalselam14&show_icons=true&hide_border=true&rank_icon=github&include_all_commits=true"
+        alt="GitHub stats for kapalselam14"
+      />
+    </td>
+    <td>
+      <img
+        src="https://github-readme-stats.vercel.app/api/top-langs/?username=kapalselam14&layout=compact&hide_border=true"
+        alt="Top languages used by kapalselam14"
+      />
+    </td>
+  </tr>
+</table>
+
+![GitHub activity graph for <kapalselam14>](https://github-readme-activity-graph.vercel.app/graph?username=kapalselam14&theme=github-compact&hide_border=true)
+
+## What You'll Find In My Repositories
+
+- Projects with actual backend logic, not just UI shells
+- Authentication, persistence, testing, and integration work
+- README files that explain product goals, architecture, and tradeoffs
+- A mix of frontend polish and implementation detail
+
+## Connect With Me
+
+- Portfolio: <YOUR_PORTFOLIO_URL>
+- LinkedIn: [Aidil Muslim](https://www.linkedin.com/in/aidilmuslim)
+- Email: [aidil.muslm@gmail.com](aidil.muslm@gmail.com)
+
+## Optional Add-Ons
+
+If you want to make the profile more active later, add one or two of these:
+
+- WakaTime weekly coding stats
+- A pinned blog or writing section
+- A GitHub snake animation
+- A "currently learning" or "currently building" card updated by GitHub Actions
+
+---
