@@ -1,0 +1,363 @@
+/* Load Figtree from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS custom properties ──────────────────────────────────────────────────── */
+:root {
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1f5f9; /* hover target — slightly darker than surface */
+  --bg-muted: #f8fafc; /* alternate table rows */
+  --border: #e2e8f0;
+  --border-muted: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --brand-graphic: #0b1f8a; /* chart lines, bars, dots, progress fills */
+}
+
+.dark {
+  --bg-page: #0f1117;
+  --bg-surface: #1e293b;
+  --bg-elevated: #2d3f54; /* hover — LIGHTER than surface so text stays visible */
+  --bg-muted: #192130; /* alternate table rows only (no text overlap issue) */
+  --border: #334155;
+  --border-muted: #2a3a4e;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #8899ae;
+  /* Navy #0b1f8a is 1.1:1 on bg-surface — lift brand graphics to a light blue */
+  --brand-graphic: #7c9cff; /* 5.6:1 on #1e293b */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  @apply antialiased;
+  font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   LIGHT MODE FIXES
+   text-ink-400 (#94a3b8) is only 2.56:1 on white — upgrade to #64748b
+   ════════════════════════════════════════════════════════════════════════════ */
+body:not(.dark) .text-ink-400 {
+  color: #64748b !important;
+}
+body:not(.dark) input::placeholder {
+  color: #64748b !important;
+}
+body:not(.dark) textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — TEXT CONTRAST
+   All ratios verified against bg-surface #1e293b (WCAG AA ≥ 4.5:1)
+   ════════════════════════════════════════════════════════════════════════════ */
+.dark .text-ink-900 {
+  color: #f1f5f9 !important;
+} /* 13.4:1 */
+.dark .text-ink-800 {
+  color: #e2e8f0 !important;
+} /* 11.9:1 */
+.dark .text-ink-700 {
+  color: #cbd5e1 !important;
+} /*  9.9:1 */
+.dark .text-ink-600 {
+  color: #94a3b8 !important;
+} /*  5.7:1 */
+.dark .text-ink-500 {
+  color: #8899ae !important;
+} /*  5.0:1 */
+.dark .text-ink-400 {
+  color: #94a3b8 !important;
+} /*  5.7:1 */
+.dark .text-ink-300 {
+  color: #7e91a8 !important;
+} /*  4.5:1 */
+
+/* Brand navy text (#0b1f8a family) is ~1.1:1 on bg-surface — lift to brand-300 */
+.dark .text-brand-400,
+.dark .text-brand-500,
+.dark .text-brand-600,
+.dark .text-brand-700,
+.dark .group:hover .group-hover\:text-brand-400 {
+  color: #8fadf6 !important;
+} /*  6.6:1 */
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — BRAND FILLS
+   Navy fills vanish against the dark surface; white text on #3b5bdb is 5.7:1
+   ════════════════════════════════════════════════════════════════════════════ */
+.dark .bg-brand-500,
+.dark .bg-brand-600 {
+  background-color: #3b5bdb !important;
+}
+.dark .hover\:bg-brand-600:hover,
+.dark .hover\:bg-brand-700:hover {
+  background-color: #4263eb !important;
+}
+.dark .border-brand-500 {
+  border-color: #3b5bdb !important;
+}
+/* Status dots and bar/progress fills */
+.dark .bg-brand-400,
+.dark .bg-brand-700 {
+  background-color: #7c9cff !important;
+}
+/* Light tints (pills, info boxes) would otherwise stay pale behind light text */
+.dark .bg-brand-50,
+.dark .bg-brand-100 {
+  background-color: rgba(79, 114, 224, 0.2) !important;
+}
+.dark .hover\:bg-brand-50:hover,
+.dark .hover\:bg-brand-100:hover {
+  background-color: rgba(79, 114, 224, 0.32) !important;
+}
+.dark .border-brand-100,
+.dark .border-brand-200 {
+  border-color: rgba(143, 173, 246, 0.35) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — STATIC BACKGROUNDS
+   Only applied to non-interactive, non-hover elements
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* bg-white on static containers (cards, panels, modals) */
+.dark .bg-white {
+  background-color: #1e293b !important;
+}
+
+/* thead and static zebra-stripe alternate rows */
+.dark tr.bg-ink-50 {
+  background-color: #192130 !important;
+}
+.dark tr.bg-white {
+  background-color: #1e293b !important;
+}
+.dark thead .bg-ink-50,
+.dark .bg-ink-50:not([class*='hover:']):not(button):not(a):not([role='button']) {
+  background-color: #192130 !important;
+}
+
+/* bg-ink-100 static (pills, tags, search bar bg) — keep readable */
+.dark .bg-ink-100 {
+  background-color: #263244 !important;
+}
+.dark .bg-ink-200 {
+  background-color: #2d3f54 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — HOVER STATES
+   Hover bg must be LIGHTER than surface so text remains visible
+   --bg-elevated = #2d3f54 gives adequate contrast for all ink text colors
+   ════════════════════════════════════════════════════════════════════════════ */
+.dark .hover\:bg-ink-50:hover,
+.dark .hover\:bg-ink-100:hover,
+.dark .hover\:bg-ink-200:hover {
+  background-color: #2d3f54 !important;
+}
+
+/* Table row hover — override the tr selector specifically */
+.dark tbody tr:hover {
+  background-color: #2d3f54 !important;
+}
+
+/* Generic hover:bg-white in dark mode */
+.dark .hover\:bg-white:hover {
+  background-color: #263244 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — BORDERS & DIVIDERS
+   ════════════════════════════════════════════════════════════════════════════ */
+.dark .border-ink-100 {
+  border-color: #2a3a4e !important;
+}
+.dark .border-ink-200 {
+  border-color: #334155 !important;
+}
+.dark .divide-ink-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #2a3a4e !important;
+}
+.dark .divide-ink-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #334155 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DARK MODE — INPUTS & PLACEHOLDERS
+   ════════════════════════════════════════════════════════════════════════════ */
+.dark input::placeholder {
+  color: #8899ae !important;
+}
+.dark textarea::placeholder {
+  color: #8899ae !important;
+}
+
+/* Search bar inline inputs (bg-transparent inside bg-ink-50 containers) */
+.dark .bg-ink-50 input,
+.dark .bg-ink-700\/50 input {
+  color: #cbd5e1 !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   COMPONENT STYLES
+   ════════════════════════════════════════════════════════════════════════════ */
+@layer utilities {
+  @keyframes slide-in {
+    from {
+      transform: translateX(110%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .animate-slide-in {
+    animation: slide-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@layer components {
+  /* ── Cards & panels ─────────────────────────────────────────── */
+  .card {
+    @apply rounded-2xl border p-5 shadow-card;
+    background-color: var(--bg-surface);
+    border-color: var(--border);
+  }
+  .panel {
+    @apply rounded-2xl border shadow-card;
+    background-color: var(--bg-surface);
+    border-color: var(--border);
+  }
+
+  /* ── Page layout ────────────────────────────────────────────── */
+  .page-container {
+    @apply w-full px-6 py-6 lg:px-8 lg:py-8;
+  }
+  .page-header {
+    @apply mb-6 flex items-start justify-between;
+  }
+
+  /* ── Badges ─────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .badge-blue {
+    @apply badge bg-brand-100  text-brand-700;
+  }
+  .badge-green {
+    @apply badge bg-success-100 text-success-700;
+  }
+  .badge-yellow {
+    @apply badge bg-warning-100 text-warning-700;
+  }
+  .badge-red {
+    @apply badge bg-danger-100  text-danger-700;
+  }
+  .badge-neutral {
+    @apply badge bg-ink-100     text-ink-600;
+  }
+
+  .dark .badge-blue {
+    background-color: rgba(11, 31, 138, 0.3);
+    color: #8fadf6;
+  }
+  .dark .badge-green {
+    background-color: rgba(22, 163, 74, 0.25);
+    color: #4ade80;
+  }
+  .dark .badge-yellow {
+    background-color: rgba(217, 119, 6, 0.25);
+    color: #fcd34d;
+  }
+  .dark .badge-red {
+    background-color: rgba(220, 38, 38, 0.25);
+    color: #fca5a5;
+  }
+  .dark .btn-primary {
+    background-color: #3b5bdb;
+  }
+  .dark .btn-primary:hover {
+    background-color: #4263eb;
+  }
+  .dark .btn-ghost {
+    color: #8fadf6;
+  }
+  .dark .btn-ghost:hover {
+    background-color: rgba(79, 114, 224, 0.2);
+  }
+  .dark .badge-neutral {
+    background-color: #263244;
+    color: #94a3b8;
+  }
+
+  /* ── Buttons ────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 text-white hover:bg-brand-600 focus:ring-brand-400 px-4 py-2;
+  }
+  .btn-outline {
+    @apply btn border px-4 py-2;
+    border-color: var(--border);
+    background-color: var(--bg-surface);
+    color: var(--text-secondary);
+  }
+  .btn-outline:hover {
+    background-color: var(--bg-elevated);
+  }
+  .btn-ghost {
+    @apply btn text-brand-500 hover:bg-brand-50 focus:ring-brand-400 px-3 py-1.5;
+  }
+  .btn-danger {
+    @apply btn bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-500 px-3 py-1.5;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs rounded-lg;
+  }
+
+  /* ── Table ──────────────────────────────────────────────────── */
+  .tbl-th {
+    @apply px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wide;
+    color: var(--text-secondary);
+  }
+  .tbl-td {
+    @apply px-4 py-4 text-sm;
+    color: var(--text-secondary);
+  }
+
+  /* ── Form inputs ─────────────────────────────────────────────── */
+  .input {
+    @apply w-full rounded-xl border px-4 py-2.5 text-sm focus:outline-none focus:ring-2;
+    background-color: var(--bg-surface);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .input::placeholder {
+    color: var(--text-muted);
+  }
+  .input:focus {
+    border-color: var(--brand-graphic);
+    box-shadow: 0 0 0 2px rgba(11, 31, 138, 0.15);
+  }
+}

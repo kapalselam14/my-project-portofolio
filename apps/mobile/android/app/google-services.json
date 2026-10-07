@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "569237066208",
+    "firebase_url": "https://matchup-cs734-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "matchup-cs734",
+    "storage_bucket": "matchup-cs734.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569237066208:android:44ba8b8d0a2033e7391b85",
+        "android_client_info": {
+          "package_name": "nz.ac.auckland.matchup.matchup_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569237066208-90gdlgssk4ga1pltfqs227f4qqbl3s37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nz.ac.auckland.matchup.matchup_mobile",
+            "certificate_hash": "e0bc728ee78f2be3533a12fba0797a4471ba737d"
+          }
+        },
+        {
+          "client_id": "569237066208-2t1rc85qf5q1ttcp9fqif2mri52618ej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Y-vbiG7i4w-eFOnzwiCcBV9UuJDMcPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569237066208-2t1rc85qf5q1ttcp9fqif2mri52618ej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

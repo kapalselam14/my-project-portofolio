@@ -1,0 +1,19 @@
+<!-- Status-bar notification glyph: white monochrome per Android best
+     practice (the OS tints status icons itself; full-color art renders
+     as a white blob). Ring + ball echo the MatchUp badge silhouette.
+     Referenced by the backend FCM payload (`android.notification.icon`).
+     The navy accent comes from `android.notification.color`. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M12,3.5 a8.5,8.5 0 1,0 0,17 a8.5,8.5 0 1,0 0,-17 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,9.2 a2.8,2.8 0 1,0 0,5.6 a2.8,2.8 0 1,0 0,-5.6 Z" />
+</vector>

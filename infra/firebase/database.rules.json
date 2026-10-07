@@ -1,0 +1,64 @@
+{
+  "rules": {
+    "activityChats": {
+      "$activityId": {
+        "messages": {
+          ".read": "auth != null",
+          ".write": false,
+          "$messageId": {
+            ".validate": "newData.hasChildren(['senderId', 'text', 'type', 'timestamp']) && newData.child('senderId').isString() && newData.child('text').isString() && (newData.child('type').val() == 'text' || newData.child('type').val() == 'system') && newData.child('timestamp').isNumber()"
+          }
+        },
+        "reactions": {
+          ".read": "auth != null",
+          ".write": false,
+          "$messageId": {
+            "$emoji": {
+              "$uid": {
+                ".validate": "newData.isNumber()"
+              }
+            }
+          }
+        },
+        "polls": {
+          ".read": "auth != null",
+          ".write": false,
+          "$pollId": {
+            ".validate": "newData.hasChildren(['question', 'options', 'createdBy', 'createdAt']) && newData.child('question').isString() && newData.child('createdBy').isString() && newData.child('createdAt').isNumber()"
+          }
+        }
+      }
+    },
+    "typing": {
+      "$activityId": {
+        ".read": "auth != null",
+        ".write": false
+      }
+    },
+    "presence": {
+      ".read": "auth != null",
+      ".write": false,
+      "$uid": {
+        ".write": "auth != null && auth.uid == $uid",
+        ".validate": "newData.hasChildren(['state', 'lastChanged']) && (newData.child('state').val() == 'online' || newData.child('state').val() == 'offline') && newData.child('lastChanged').isNumber()"
+      }
+    },
+    "dmChats": {
+      "$threadId": {
+        "messages": {
+          ".read": "auth != null && ($threadId.beginsWith(auth.uid + '_') || $threadId.endsWith('_' + auth.uid))",
+          ".write": false,
+          "$messageId": {
+            ".validate": "newData.hasChildren(['senderId', 'text', 'timestamp']) && newData.child('senderId').isString() && newData.child('text').isString() && newData.child('timestamp').isNumber()"
+          }
+        }
+      }
+    },
+    "userDMs": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": false
+      }
+    }
+  }
+}

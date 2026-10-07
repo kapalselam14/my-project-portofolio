@@ -1,0 +1,146 @@
+name: matchup_mobile
+description: "MatchUp mobile app — Flutter client."
+publish_to: 'none'
+version: 0.0.1+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Networking
+  dio: ^5.7.0
+
+  # Local storage
+  shared_preferences: ^2.3.2
+  hive_flutter: ^1.1.0
+
+  # Environment variables
+  flutter_dotenv: ^5.2.1
+
+  # State management (lightweight placeholder; can be replaced in MVP)
+  flutter_riverpod: ^2.6.1
+
+  # Routing
+  go_router: ^17.5.0
+
+  # Testable wall-clock access (NavGuard's push safety-net timeout)
+  clock: ^1.1.2
+
+  # Swipe cards
+  card_swiper: ^3.0.1
+
+  # Image picker
+  image_picker: ^1.2.3
+
+  # Device GPS location (chat "share location" attachment)
+  geolocator: ^14.0.2
+
+  # Opens a shared location in the device's maps app
+  url_launcher: ^6.3.2
+
+  # System share sheet (activity invites, profiles)
+  share_plus: ^13.3.0
+
+  # Image processing (decode/encode/crop for wizard uploads)
+  image: ^4.2.0
+
+  # Disk + memory image cache for remote covers/avatars.
+  # Thumbnail 72px jangan decode full-size: pakai memCacheWidth/Height.
+  cached_network_image: ^3.4.1
+
+  # Date formatting
+  intl: ^0.20.2
+
+  # SVG rendering for icons exported from Figma
+  flutter_svg: ^2.0.10+1
+
+  # Secure storage for tokens/PII (Keychain iOS, Keystore Android)
+  flutter_secure_storage: ^11.1.0
+
+  # Calendar integration (optional / class-two feature)
+  device_calendar: ^4.3.3
+
+  # Firebase Cloud Messaging + Realtime Database + Storage.
+  # All three are wrapped behind a "Firebase enabled?" guard so the app
+  # still boots without `firebase_options.dart` / `google-services.json` /
+  # `GoogleService-Info.plist` — in that mode, push notifications, real-
+  # time chat, and image uploads gracefully fall back to HTTP / polling
+  # / local-only paths.
+  firebase_core: ^4.15.0
+  firebase_auth: ^6.7.0
+  firebase_messaging: ^16.7.0
+  firebase_database: ^12.6.0
+  firebase_storage: ^13.6.0
+
+  # Interactive maps for the venue picker — OpenStreetMap tile source
+  # (no API key, no billing). The venue picker opens a bottom sheet
+  # with a tappable map and a search list; tapping a pin or row sets
+  # the activity's location field.
+  flutter_map: ^8.3.2
+  latlong2: ^0.10.1
+  package_info_plus: ^10.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  fonts:
+    # Heading & Display — sporty-geometric, high-impact
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-Regular.ttf
+        - asset: assets/fonts/Outfit-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Outfit-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Outfit-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Outfit-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Outfit-Black.ttf
+          weight: 900
+
+    # Body & Metadata — neutral, highly readable at small sizes
+    - family: Geist
+      fonts:
+        - asset: assets/fonts/Geist-Regular.ttf
+        - asset: assets/fonts/Geist-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Geist-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Geist-Bold.ttf
+          weight: 700
+
+    # Accent / Highlight — for badges, sport tags, small standout elements
+    - family: Plus Jakarta Sans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/PlusJakartaSans-ExtraBold.ttf
+          weight: 800
+  assets:
+    - .env
+    - .env.example
+    - assets/images/
+    - assets/images/splash/
+    - assets/images/onboarding/
+    - assets/images/welcome/
+    - assets/images/auth/
+    - assets/images/discovery/
+    - assets/images/discovery/avatars/
+    - assets/images/discovery/covers/
+    - assets/images/discovery/icons/
+    - assets/images/discovery/sports/

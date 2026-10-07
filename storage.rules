@@ -1,0 +1,94 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isActivityHost(activityId) {
+      return isSignedIn()
+        && firestore.get(/databases/(default)/documents/activities/$(activityId)).data.hostId == request.auth.uid;
+    }
+
+    function isAllowedProfileImage() {
+      return request.resource != null
+        && request.resource.size <= 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+    }
+
+    function isAllowedActivityCoverImage() {
+      return request.resource != null
+        && request.resource.size <= 8 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+    }
+
+    function isAllowedChatImage() {
+      return request.resource != null
+        && request.resource.size <= 8 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+    }
+
+    function isAllowedEvidenceImage() {
+      return request.resource != null
+        && request.resource.size <= 8 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp)');
+    }
+
+    match /users/{uid}/profile/{fileName} {
+      allow read: if isSignedIn();
+      allow create, update: if isOwner(uid) && isAllowedProfileImage();
+      allow delete: if isOwner(uid);
+    }
+
+    match /activities/{activityId}/cover/{fileName} {
+      allow read: if true;
+      allow create, update: if isActivityHost(activityId) && isAllowedActivityCoverImage();
+      allow delete: if isActivityHost(activityId);
+    }
+
+    // Chat photo attachments, uploaded by activity participants via
+    // StorageService.uploadChatAttachment
+    // (`uploads/chat-attachments/{scope}/{uid}/{file}` where scope is the
+    // activity id or `dm_{threadId}`).
+    // M2 fix: write/delete are owner-scoped — the uid segment must equal
+    // the uploader. Previously any signed-in user could overwrite or
+    // delete anyone's attachment. Membership is still enforced at the API
+    // layer (POST /api/chat/messages) before the URL is shared.
+    match /uploads/chat-attachments/{scope}/{uid}/{fileName} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isOwner(uid) && isAllowedChatImage();
+    }
+
+    // Legacy flat/two-segment attachment paths (pre-owner-scoping
+    // uploads): keep readable so old chat photos don't break, but
+    // permanently read-only — all new uploads must use the
+    // owner-scoped path above.
+    match /uploads/chat-attachments/{fileName} {
+      allow read: if isSignedIn();
+      allow write: if false;
+    }
+    match /uploads/chat-attachments/{scope}/{fileName} {
+      allow read: if isSignedIn();
+      allow write: if false;
+    }
+
+    // Report evidence photos, uploaded by the reporter via
+    // StorageService.uploadReportEvidence
+    // (`uploads/report-evidence/{uid}/{file}`). Owner-scoped like chat
+    // attachments — the uid segment must equal the uploader — since the
+    // report the evidence attaches to doesn't exist yet at upload time.
+    match /uploads/report-evidence/{uid}/{fileName} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isOwner(uid) && isAllowedEvidenceImage();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

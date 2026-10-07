@@ -1,0 +1,12 @@
+{
+  "name": "@matchup/shared-utils",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Small reusable utility helpers shared across MatchUp apps.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "echo 'no lint configured'",
+    "test": "echo 'no tests yet'"
+  }
+}

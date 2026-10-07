@@ -1,0 +1,52 @@
+name: mirror-main-to-hosting
+
+# Setiap ada push ke main di nimble-takahe -> auto-push ke matchup-hosting.
+# Butuh secret HOSTING_MIRROR_TOKEN: PAT (akun imamnurhidayat77) dengan
+# scope `repo` + `workflow` (classic) atau Contents:RW + Actions:RW
+# (fine-grained). Scope `workflow` wajib karena mirror ikut mem-push
+# file .github/workflows/*.yml dan GitHub menolak update workflow
+# tanpa scope itu.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # untuk backfill manual sekali saja
+
+jobs:
+  mirror:
+    # Jangan jalan di repo mirror hasil copy (mencegah loop push ke diri sendiri).
+    if: github.repository == 'UOA-CS734-S2-2026/project-implementation-nimble-takahe'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Jangan simpan GITHUB_TOKEN sebagai credential helper:
+          # extraheader itu menimpa token di URL dan push selalu
+          # jalan sebagai github-actions[bot] -> 403.
+          persist-credentials: false
+
+      - name: Push main to matchup-hosting
+        env:
+          HOSTING_MIRROR_TOKEN: ${{ secrets.HOSTING_MIRROR_TOKEN }}
+        run: |
+          if [ -z "$HOSTING_MIRROR_TOKEN" ]; then
+            echo "::error::HOSTING_MIRROR_TOKEN secret is missing/empty. Add a PAT with write access to imamnurhidayat77/matchup-hosting in repo Settings > Secrets > Actions."
+            exit 1
+          fi
+          # Sabuk pengaman kalau ada extraheader sisa:
+          git config --unset http.https://github.com/.extraheader 2>/dev/null || true
+          git remote remove hosting 2>/dev/null || true
+          git remote add hosting "https://x-access-token:${HOSTING_MIRROR_TOKEN}@github.com/imamnurhidayat77/matchup-hosting.git"
+          # Repo hosting punya commit sendiri (mis. README init) sehingga
+          # histori divergen: fetch lalu merge sekali, setelah itu push
+          # fast-forward seperti biasa. Tanpa merge, push selalu rejected.
+          git fetch hosting main || true
+          if git merge-base --is-ancestor hosting/main HEAD 2>/dev/null; then
+            git push hosting HEAD:main
+          else
+            git -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
+              merge --allow-unrelated-histories hosting/main -m "chore: sync hosting mirror"
+            git push hosting HEAD:main
+          fi

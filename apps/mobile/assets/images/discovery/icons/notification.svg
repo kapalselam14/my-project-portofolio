@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="notification-icon">
+<path id="bell-icon" d="M22 13C21.172 13 20.5 13.6912 20.5 14.5429V15.1446C17.929 15.6331 16 17.9557 16 20.7143V25.3429L14.5 27.4H29.5L28 25.3429V20.7143C28 17.9557 26.071 15.6331 23.5 15.1446V14.5429C23.5 13.6912 22.828 13 22 13ZM24 28.9429C24 30.0794 23.105 31 22 31C20.895 31 20 30.0794 20 28.9429H24Z" fill="currentColor"/>
+<circle id="notification-badge" cx="21.5" cy="6.5" r="2.75" fill="#CC3333" stroke="white" stroke-width="1.5"/>
+</g>
+</svg>

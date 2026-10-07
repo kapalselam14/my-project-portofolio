@@ -1,0 +1,73 @@
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+.codebase-memory/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+pubspec.lock
+
+# iOS / Android
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+android/.gradle/
+android/local.properties
+android/key.properties
+**/*.keystore
+**/*.jks
+
+# Test
+coverage/
+*.lcov
+
+# Local dev runner artifacts
+.pids/
+.logs/
+
+# Misc
+.DS_Store
+*.iml
+
+# Backend Project Folder
+dev-docs/
+apps/api-server/src/modules/auth-dev-only/
+# Kiro (local only, not committed)
+.kiro/
+figma-cli.ts
+
+# Personal notes (local only, not committed)
+docs/interview-prep.md

@@ -1,0 +1,136 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  admin-web:
+    name: Admin web
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/admin-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # Must stay >= 22: undici 8 (via jsdom) reads
+          # worker_threads.markAsUncloneable, which does not exist on
+          # Node 20 — every jsdom worker crashes at import and all
+          # suites fail without running a single test.
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: apps/admin-web/package-lock.json
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund --legacy-peer-deps
+      - name: Audit (fail on high/critical)
+        # Production tree only: devDependency findings (vite/esbuild
+        # dev-server advisories) never ship to browsers — see
+        # docs/security/owasp-top-10.md A06 for the accepted-risk note.
+        run: npm audit --omit=dev --audit-level=high
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Coverage gate
+        run: npm run test:coverage
+      - name: Build
+        run: npm run build
+
+  api-server:
+    name: API Server
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api-server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # Must stay >= 22: firebase-admin 14 moved @google-cloud/firestore
+          # to optionalDependencies with engines >= 22, and npm silently
+          # SKIPS optional deps on engine mismatch — on Node 20 the module
+          # vanishes and all 33 firestore-touching suites fail with
+          # MODULE_NOT_FOUND at import time.
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: apps/api-server/package-lock.json
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Audit (fail on high/critical)
+        # Same production-tree scoping as admin-web (see above).
+        run: npm audit --omit=dev --audit-level=high
+      - name: Test
+        run: npm test
+      - name: Coverage gate
+        run: npm run test -- --coverage
+      - name: Build
+        run: npm run build
+
+  security-guard:
+    name: Secrets guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Private keys, service-account files, and env files must never be
+      # tracked — Firebase web API keys in firebase_options.dart /
+      # GoogleService-Info.plist are public client identifiers, not
+      # secrets, so they are deliberately NOT matched here. `*.example`
+      # and `.env.test` hold placeholder key *shapes* (XXXX/TEST), not
+      # key material, and are excluded for the same reason.
+      - name: Fail if secret material is tracked
+        run: |
+          tracked="$(git ls-files | grep -iE '(^|/)\.env$|serviceAccount.*\.json$|\.pem$' || true)"
+          if [ -n "$tracked" ]; then echo "tracked secrets:\n$tracked"; exit 1; fi
+          ! git grep -nE 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY' -- . | grep -vE '\.example:|\.env\.test:' || exit 1
+
+  mobile:
+    name: Mobile
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          # Pinned: golden reference images are only valid for the Flutter
+          # version that recorded them. Bump deliberately and re-record
+          # goldens (`flutter test --update-goldens test/golden/`) in the
+          # same change.
+          flutter-version: '3.44.8'
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Seed .env for analyze/test
+        # `.env` is gitignored but listed as a Flutter asset, so a fresh
+        # checkout has no `.env` and `flutter analyze` reports
+        # `asset_does_not_exist`. Seed it from the committed example when
+        # missing; real developer overrides stay untouched (`cp -n`).
+        run: cp -n .env.example .env || true
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test --coverage
+      # Floor, not goal: measured ~70% lines at introduction. Parses the
+      # lcov output with awk (no extra tooling) so the gate runs on the
+      # stock ubuntu image; raise deliberately when new suites land.
+      - name: Coverage gate (lines >= 65%)
+        run: |
+          read h f <<< $(grep -E '^L[HF]:' coverage/lcov.info | awk -F: '{if($1=="LF")f+=$2; else h+=$2} END {print h, f}')
+          pct=$(awk "BEGIN {printf \"%.2f\", ($f>0 ? 100*$h/$f : 0)}")
+          echo "flutter line coverage: $h/$f = $pct%"
+          awk "BEGIN {exit !(($f>0 ? 100*$h/$f : 0) >= 65)}" || (echo "coverage below floor"; exit 1)
+

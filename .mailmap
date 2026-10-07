@@ -1,0 +1,5 @@
+# Unify duplicate commit identities (same authors, different machines).
+Imam Nurhidayat <inur448@aucklanduni.ac.nz> imanurhidayat77 <inur448@aucklanduni.ac.nz>
+Imam Nurhidayat <inur448@aucklanduni.ac.nz> Imam Nurhidayat <inur448@aucklanduni.ac.nz>
+Aidil Muslim <amus790@aucklanduni.ac.nz> aidilmslm <amus790@aucklanduni.ac.nz>
+Aidil Muslim <amus790@aucklanduni.ac.nz> Aidil Muslim <amus790@aucklanduni.ac.nz>
